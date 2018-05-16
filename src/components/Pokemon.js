@@ -19,7 +19,7 @@ class Pokemon extends Component {
         const url = 'https://pokeapi.co/api/v2/pokemon/pikachu'
         fetch(url)
         .then(res => res.json())
-        .then(pokemon => console.log(pokemon))
+        .then(pokemon => this.setState(prevState => ({ pokemon })))
     }
 
 }
