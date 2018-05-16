@@ -2,8 +2,16 @@ import React,{ Component } from 'react'
 
 class Pokemon extends Component {
 
+    constructor() {
+        super()
+        this.state = {
+            pokemon: {
+                name: 'Loading...'
+            }
+        }
+    }
     render() {
-        return <div>Pokemon:</div>
+        return <div>Pokemon: {this.state.pokemon.name}</div>
     }
 
     componentDidMount() {
