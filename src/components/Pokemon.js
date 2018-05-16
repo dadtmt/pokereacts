@@ -5,13 +5,17 @@ class Pokemon extends Component {
     constructor() {
         super()
         this.state = {
+            loading: true,
             pokemon: {
-                name: 'Loading...'
+                name: ''
             }
         }
     }
     render() {
-        return <div>Pokemon: {this.state.pokemon.name}</div>
+        return <div>
+            { this.state.loading && <p>Loading</p> }
+            <p>Pokemon: {this.state.pokemon.name}</p>
+        </div>
     }
 
     componentDidMount() {
@@ -19,7 +23,12 @@ class Pokemon extends Component {
         const url = 'https://pokeapi.co/api/v2/pokemon/pikachu'
         fetch(url)
         .then(res => res.json())
-        .then(pokemon => this.setState(prevState => ({ pokemon })))
+        .then(pokemonRes => this.setState(
+            prevState => ({ 
+                loading: false,
+                pokemon: pokemonRes 
+            })
+        ))
     }
 
 }
